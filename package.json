@@ -1,19 +1,25 @@
 {
-  "name": "hitesh-chai-aur-backend",
-  "version": "1.0.0",
-  "description": "Basic App TO deploy",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/FREAKIN-D1A/hitesh-chai-aur-backend.git"
-  },
-  "author": "Dewan Mohammad Asad",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/FREAKIN-D1A/hitesh-chai-aur-backend/issues"
-  },
-  "homepage": "https://github.com/FREAKIN-D1A/hitesh-chai-aur-backend#readme"
+	"name": "hitesh-chai-aur-backend",
+	"version": "1.0.0",
+	"description": "Basic App TO deploy",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/FREAKIN-D1A/hitesh-chai-aur-backend.git"
+	},
+	"author": "Dewan Mohammad Asad",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/FREAKIN-D1A/hitesh-chai-aur-backend/issues"
+	},
+	"homepage": "https://github.com/FREAKIN-D1A/hitesh-chai-aur-backend#readme",
+	"dependencies": {
+		"dotenv": "^16.3.1",
+		"express": "^4.18.2"
+	}
 }
