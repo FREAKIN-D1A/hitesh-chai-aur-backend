@@ -13,4 +13,11 @@ git push -u origin main
 git branch -M main &&
 git add . &&
 git commit -m "-- commit" &&
-git push -u origin main
+git push -u origin main  
+
+
+---------------------
+import { COLORS } from "../constant";
+console.log(COLORS.FgCyan, "\n\n");
+console.log("Mongodb connection error Error:\n", error);
+console.log(COLORS.Reset, "\n\n");
