@@ -18,6 +18,7 @@ git push -u origin main
 
 ---------------------
 import { COLORS } from "../constant";
-console.log(COLORS.FgCyan, "\n\n");
-console.log("Mongodb connection error Error:\n", error);
-console.log(COLORS.Reset, "\n\n");
+  console.log(COLORS.FgBlue, "\n\n");
+  console.log("req.files   >>>>>>\n");
+  console.log(req.files);
+  console.log(COLORS.Reset, "\n\n");

@@ -7,15 +7,21 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const registerUser = asyncHandler(async (req, res) => {
   // get uer details from frontend
-  const { fullname: fullName, email, username, password } = req.body;
-  console.log(COLORS.FgCyan, "\n\n");
-  console.log("{ fullname, email, username, password }:\n", {
-    fullName: fullName,
-    email,
-    username,
-    password,
-  });
-  console.log(COLORS.Reset, "\n\n");
+  const { fullName, email, username, password } = req.body;
+
+  // console.log(COLORS.FgGreen, "\n");
+  // console.log("req.body:\n");
+  // console.log(req.body);
+  // console.log(COLORS.Reset, "\n\n");
+
+  // console.log(COLORS.FgCyan, "\n\n");
+  // console.log("{ fullName, email, username, password }:\n", {
+  //   fullName,
+  //   email,
+  //   username,
+  //   password,
+  // });
+  // console.log(COLORS.Reset, "\n\n");
 
   // validation - not empty
   if (
@@ -25,18 +31,28 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   // check if user already exists : username, emails
-  const existsUser = User.findOne({
+  const existsUser = await User.findOne({
     $or: [{ username }, { email }],
   });
   if (existsUser) {
     throw new ApiError(409, "User with username or password exists here.");
   }
+
+  console.log(COLORS.FgBlue, "\n\n");
+  console.log("req.files   >>>>>>\n");
+  console.log(req.files);
+  console.log(COLORS.Reset, "\n\n");
+
   // check avatar, images
-  const avatarLocalPath = req.files?.avatar[0]?.path; // first property gives an option of path
-  const coverImageLocalPath = req.files?.coverImage[0]?.path;
+  // const avatarLocalPath = req?.files?.avatar[0]?.path; // first property gives an option of path
+  const avatarLocalPath = req.files?.avatar[0]?.path;
+  const coverImageLocalPath = req?.files?.coverImage[0]?.path;
 
   if (!avatarLocalPath) {
-    throw new ApiError(400, "Avatar is required");
+    console.log(COLORS.FgMagenta, "\n\n");
+    console.log("Avatar is required: eq.files?.avatar[0]?.path:\n");
+    console.log(COLORS.Reset, "\n\n");
+    throw new ApiError(400, "Avatar is required: eq.files?.avatar[0]?.path");
   }
 
   // upload to cloudinary , avatar
@@ -44,7 +60,14 @@ const registerUser = asyncHandler(async (req, res) => {
   const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 
   if (!avatar) {
-    throw new ApiError(400, "Avatar is required");
+    console.log(COLORS.FgYellow, "\n\n");
+    console.log("Avatar is required: eq.files?.avatar[0]?.path:\n");
+    console.log(COLORS.Reset, "\n\n");
+
+    throw new ApiError(
+      400,
+      "Avatar is required await uploadOnCloudinary(avatarLocalPath);"
+    );
   }
 
   // create user obj - create entry in mongodb
@@ -58,9 +81,14 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   // remove password and refress token from response
-  const CreatedUser = User.findById(newUser.id).select(
+  const CreatedUser = await User.findById(newUser.id).select(
     "-password -refreshToken"
   );
+
+  // console.log(COLORS.FgBlue, "\n\n");
+  // console.log("CreatedUser   >>>>>>\n");
+  // console.log(CreatedUser);
+  // console.log(COLORS.Reset, "\n\n");
 
   // check for user creation
   if (!CreatedUser) {
