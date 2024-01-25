@@ -9,10 +9,15 @@ const registerUser = asyncHandler(async (req, res) => {
   // get uer details from frontend
   const { fullName, email, username, password } = req.body;
 
-  // console.log(COLORS.FgGreen, "\n");
-  // console.log("req.body:\n");
-  // console.log(req.body);
-  // console.log(COLORS.Reset, "\n\n");
+  console.log(COLORS.FgBlue, "\n\n");
+  console.log("req.files   >>>>>>\n");
+  console.log(req.files);
+  console.log(COLORS.Reset, "\n\n");
+
+  console.log(COLORS.FgGreen, "\n");
+  console.log("req.body >>>>>>:\n");
+  console.log(req.body);
+  console.log(COLORS.Reset, "\n\n");
 
   // console.log(COLORS.FgCyan, "\n\n");
   // console.log("{ fullName, email, username, password }:\n", {
@@ -38,15 +43,17 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(409, "User with username or password exists here.");
   }
 
-  console.log(COLORS.FgBlue, "\n\n");
-  console.log("req.files   >>>>>>\n");
-  console.log(req.files);
-  console.log(COLORS.Reset, "\n\n");
-
   // check avatar, images
-  // const avatarLocalPath = req?.files?.avatar[0]?.path; // first property gives an option of path
-  const avatarLocalPath = req.files?.avatar[0]?.path;
-  const coverImageLocalPath = req?.files?.coverImage[0]?.path;
+  const avatarLocalPath = req.files?.avatar[0]?.path; // first property gives an option of path
+  // const coverImageLocalPath = req?.files?.coverImage[0]?.path || "";
+  let coverImageLocalPath;
+  if (
+    req.files &&
+    Array.isArray(req.files.coverImage) &&
+    req.files.coverImage.length > 0
+  ) {
+    coverImageLocalPath = req?.files?.coverImage[0]?.path;
+  }
 
   if (!avatarLocalPath) {
     console.log(COLORS.FgMagenta, "\n\n");
