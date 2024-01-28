@@ -39,6 +39,7 @@ use type: module in package.json
 install dev dependency prettier and write .prettierrc and .prettierignore with chatgpt.
 
 # Connect Database:
+
 inside the db folder create db/index.js create an async function . inside, use try catch.
   inside the catch use process.exit(1) .
   inside the try block - use connectionInstance =  await mongoose.connect() and print connection
@@ -54,3 +55,18 @@ go to src/app.js import express and configure stuff and  then start writing rout
 create src/utils/asyncHandler.js to take advantage of the try catch / promise 
 create src/utils/ApiError.js to set the error class overwritten with extends.
 create src/utils/ApiResponse.js  to set the response class 
+
+# write models 
+src/models/user.model.js  
+src/models/video.model.js 
+inside src/models/user.model.js, 
+ use the pre hook to encrypt the password. dont use annonymous function   
+ rather use  an async function keyword. make sure you run the function only when the password is modified.
+ then execute next()
+
+ create a new method to check password also, generate refreshToken, generate accessToken,
+
+
+
+
+

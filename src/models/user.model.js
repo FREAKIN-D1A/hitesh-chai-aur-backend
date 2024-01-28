@@ -26,17 +26,18 @@ const userSchema = new Schema(
       type: String,
       required: true,
       trim: true,
-      index: true, // for searching b
+      index: true, // for searching
     },
 
     avatar: {
-      type: String,
+      type: String, // cloudinary url
       required: true,
     },
 
     coverImage: {
       type: String,
     },
+
     watchHistory: [{ type: Schema.Types.ObjectId, ref: "Video" }],
     password: { type: String, required: [true, "Password is required"] },
     refreshToken: { type: String },
@@ -44,6 +45,8 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
+/* Pre is used to ensure that the password gets encrypted before saving it into the database mongo
+ */
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
@@ -51,6 +54,10 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+/* 
+later we will use 
+user.isPasswordCorrect
+*/
 userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
@@ -69,6 +76,7 @@ userSchema.methods.generateAccessToken = function () {
     }
   );
 };
+
 userSchema.methods.generateRefreshToken = function () {
   return jwt.sign(
     {

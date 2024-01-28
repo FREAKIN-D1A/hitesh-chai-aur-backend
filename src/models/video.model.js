@@ -35,6 +35,7 @@ const videoSchema = new Schema(
 
     ifPublished: {
       type: Boolean,
+      default: true,
     },
 
     owner: {
@@ -45,6 +46,9 @@ const videoSchema = new Schema(
   { timestamps: true }
 );
 
+/* 
+ mongooseAggregatePaginate allows u to write aggregation queries
+ */
 videoSchema.plugin(mongooseAggregatePaginate);
 
 export const Video = mongoose.model("Video", videoSchema);

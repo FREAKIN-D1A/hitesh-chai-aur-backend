@@ -7,9 +7,9 @@ import { COLORS } from "./constant.js";
 connectDB()
   .then(() => {
     app.listen(process.env.PORT || 8000, () => {
-      console.log(COLORS.FgCyan, "\n\n\n");
+      console.log(COLORS.FgCyan, "\n");
       console.log(`App is listening on port ${process.env.PORT || 8000}`);
-      console.log(COLORS.Reset, "\n\n\n");
+      console.log(COLORS.Reset, "\n\n");
     });
   })
   .catch((error) => {
