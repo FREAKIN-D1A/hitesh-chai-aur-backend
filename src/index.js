@@ -14,6 +14,6 @@ connectDB()
   })
   .catch((error) => {
     console.log(COLORS.FgRed, "\n\n");
-    console.log("Mongodb connection error Error:\n", error);
+    console.log("Mongodb connection Failed. Error:\n", error);
     console.log(COLORS.Reset, "\n\n");
   });

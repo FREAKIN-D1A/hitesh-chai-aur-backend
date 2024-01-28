@@ -9,6 +9,7 @@ const connectDB = async (req, res, next) => {
       "MONGO connection established !\n DB host:\n",
       connectionInstance.connection.host
     );
+    console.log("MONGO connectionInstance :\n", connectionInstance);
     console.log(COLORS.Reset, "\n\n");
   } catch (error) {
     console.log(COLORS.FgRed, "\n\n");

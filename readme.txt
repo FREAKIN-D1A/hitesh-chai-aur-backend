@@ -18,7 +18,39 @@ git push -u origin main
 
 ---------------------
 import { COLORS } from "../constant";
-  console.log(COLORS.FgBlue, "\n\n");
+  console.log(COLORS.FgMagenta, "\n\n");
   console.log("req.files   >>>>>>\n");
   console.log(req.files);
   console.log(COLORS.Reset, "\n\n");
+  -----------------------
+
+Project workflow:
+# Project setup:
+
+create a new project with npm init 
+create a public/temp folder which will temporarily store the pics.
+    create a new public/temp/.gitkeep - this will be used to push the empty folder.
+add .gitignore. use online .gitignore creator
+create a src folder which will store all of the files.
+inside the src...
+create index.js constant.js app.js along with some folders like db,controllers,middlewares,models,routes,utils
+
+use type: module in package.json
+install dev dependency prettier and write .prettierrc and .prettierignore with chatgpt.
+
+# Connect Database:
+inside the db folder create db/index.js create an async function . inside, use try catch.
+  inside the catch use process.exit(1) .
+  inside the try block - use connectionInstance =  await mongoose.connect() and print connection
+go to src/index.js import dotenv and config properly.  use experimental feature --experimental-json-modules
+  in the nodemon dev script. after all of the imports have been completed, your job is to use the           
+  dbconnection function in a promise .then .catch method
+
+go to src/app.js import express and configure stuff and  then start writing routes. import the app in the     
+  index.js in order to  use it inside the .then as app.listen
+
+
+# Utils
+create src/utils/asyncHandler.js to take advantage of the try catch / promise 
+create src/utils/ApiError.js to set the error class overwritten with extends.
+create src/utils/ApiResponse.js  to set the response class 
