@@ -66,7 +66,20 @@ inside src/models/user.model.js,
 
  create a new method to check password also, generate refreshToken, generate accessToken,
 
+# Upload files.
+install multer , cloudinary
+we will first store in out local server then upload to cloudinary server
+go to utils/cloudinary.js
+  config properly. 
+  write a function uploadOnCloudinary async function that takes a local file path. 
+  if local path exists, you will use cloudinary upload fcn with proper arguments. 
+  use a try catch block since this will take some time. 
+  use const response = await cloudinary.upload()
+  return the response and response.url 
+
+go to middlewares/multer.middleware.js
+  
 
 
 
-
+ 
