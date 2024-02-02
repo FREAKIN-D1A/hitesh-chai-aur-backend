@@ -8,13 +8,11 @@ git push -u origin main
 git remote add origin git@github.com:FREAKIN-D1A/hitesh-chai-aur-backend.git
 git push -u origin main
 
-
 --------------------------
 git branch -M main &&
 git add . &&
 git commit -m "-- commit" &&
 git push -u origin main  
-
 
 ---------------------
 import { COLORS } from "../constant";
@@ -78,8 +76,18 @@ go to utils/cloudinary.js
   return the response and response.url 
 
 go to middlewares/multer.middleware.js
-  
+  here we will use disk storage. not to use memory storage. 
+  multer.diskStorage takes an object with dst fcn. 
+  cb will will have public/temp as the path for temporary files
+  here we will temporarily store the pics before deleting them after the mongodb  
+  upload is complete 
 
+
+# set up routes and controllers
+all the routes are to be linked to the app.js and the route fcns are written in the controllers. 
+
+# Register user. 
+go to user.controller.js 
 
 
  
